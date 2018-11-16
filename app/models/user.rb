@@ -9,4 +9,8 @@ class User < ApplicationRecord
     self.session_token ||= SecureRandom.urlsafe_base64
   end
 
+  def password=(password)
+    self.password_digest = BCrypt::Password.create(password)
+  end
+
 end
