@@ -1,12 +1,14 @@
 class ApplicationController < ActionController::Base
 
+  helper_method :current_user, :signed_in?
+
   def login(user)
     # establish a relationship btw browser & server by setting the same session_token
     session[:session_token] = user.reset_session_token!
   end
 
   def current_user
-    @current_user ||= User.find_by(session_token: sessions[:session_token])
+    @current_user ||= User.find_by(session_token: session[:session_token])
   end
 
   def log_out

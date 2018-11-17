@@ -1,0 +1,18 @@
+<h1>This is user profile (user show) page</h1>
+
+  <h2>Welcome <%= @user.username %></h2>
+
+  <br>
+
+  <h2> Your password is <%= @user.password_digest %>
+
+    <br>
+
+    <% if signed_in? %>
+      <form action="<%= new_sessions_url %>" method="get">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="submit" value="Click to log-out!">
+      </form>
+    <% end %>
+
+    <br>
